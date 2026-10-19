@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "veilimguistub",
+  "version": "${version}",
+  "name": "Veil ImGui Stub",
+  "description": "Stops Veil from creating its ImGui editor at startup (no ImGui native for Android aarch64).",
+  "environment": "client",
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": "1.20.1"
+  },
+  "suggests": {
+    "veil": "*"
+  },
+  "mixins": [
+    "veilimguistub.mixins.json"
+  ]
+}

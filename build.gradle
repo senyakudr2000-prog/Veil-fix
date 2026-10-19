@@ -1,0 +1,39 @@
+plugins {
+    id 'fabric-loom' version '1.7.4'
+}
+
+version = project.mod_version
+group = 'dev.veilstub'
+base { archivesName = 'veil-imgui-stub' }
+
+// Заглушка типа TextEditor нужна только для компиляции, в jar она не попадает.
+sourceSets {
+    stubs
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:1.20.1"
+    mappings "net.fabricmc:yarn:1.20.1+build.10:v2"
+    modImplementation "net.fabricmc:fabric-loader:0.15.11"
+    compileOnly sourceSets.stubs.output
+}
+
+processResources {
+    inputs.property "version", project.version
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 17
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
